@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="index-hd">
+    <view class="index-desc">挂号信息</view>
+  </view>
+  <view class="page-body">
+    <view class="page-section page-section-spacing">
+        <view class="icon-box-title">预约时间</view>
+        <view class="icon-box-desc">{{regdate}}</view>
+        <view class="icon-box-title">就诊科室</view>
+        <view class="icon-box-desc">{{regtoclass}}</view>
+        <view class="icon-box-title">就诊医生</view>
+        <view class="icon-box-desc">{{regtodoc}}</view>
+        <view class="icon-box-title">费用</view>
+        <view class="icon-box-desc">{{price}}</view>
+      <button type="primary" bindtap="pay">支付</button>
+    </view>
+  </view>
+
+</view>

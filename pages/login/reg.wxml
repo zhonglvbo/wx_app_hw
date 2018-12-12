@@ -1,0 +1,29 @@
+<import src="../common/head.wxml" />
+<import src="../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '欢迎加入'}}"/>
+  <view class="page-body">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+      <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="loginName" placeholder="注册邮箱/手机号/登陆账号名" />
+              <input class="weui-input" password name="password" placeholder="密码" />
+              <input class="weui-input"password name="passwordconfirm" placeholder='再次输入密码' />
+              <input class="weui-input" name='gender' placeholder='性别' />
+              <input class="weui-input" name='age' placeholder='年龄' />
+            </view>
+          </view>
+        </view>
+      </view>      
+      <view class="btn-area">
+        <button type="primary" formType="submit">提交</button>
+        <button formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+
+  <template is="foot" />
+</view>

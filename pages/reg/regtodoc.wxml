@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="index-hd">
+    <view class="index-desc">{{DocName}}</view>
+  </view>
+  <view class="page-body">
+    <view class="page-section page-section-spacing">
+      <view class="text-box" scroll-y="true">
+        <text>{{DocDesc}}</text>
+      </view>
+      <button disabled="{{!canReg}}" bindtap="reg">挂号</button>
+      <button disabled="{{canReg}}" bindtap="recommand">智能推荐</button>   
+    </view>
+  </view>
+
+</view>

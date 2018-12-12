@@ -1,0 +1,62 @@
+<!--pages/index/index.wxml-->
+
+<view class="container">
+  <!-- <view class="page-head">
+    <view class="page-head-title">首页</view>
+    <view class="page-head-line"></view>
+    <view wx:if="{{desc}}" class="page-head-desc">{{desc}}</view>
+  </view> -->
+
+
+
+  <view class="page-body">
+    <!-- scroll view -->
+    <view class="page-section">
+      <view class="page-section-spacing">
+        <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+          <block wx:for="{{top_scroll_menu}}">
+            <view id='{{demo}}' class='scroll-view-item_H'>{{item}}</view>
+            <!-- <view id="demo1" class="scroll-view-item_H demo-text-1"></view>
+            <view id="demo2" class="scroll-view-item_H demo-text-2"></view>
+            <view id="demo3" class="scroll-view-item_H demo-text-3"></view> -->
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+
+
+    <!-- swiper -->
+    <view class="page-section">
+      <view class='page-section-spacing'>
+        <swiper indicator-dots="true" class='swiper_H' autoplay="true" interval="3000" duration="500">
+          <block wx:for="{{home_page_pics}}">
+            <swiper-item>
+              <image src="{{item.src}}" class="slide-image" mode='aspectFit' />
+              <!-- <view class="swiper-item {{item}}"></view> -->
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+
+    <!-- information stream -->
+    <view class='information_stream_container'>
+      <block wx:for="{{information_stream_items}}">
+        <view class='information_stream_item'>
+          <image class='information_stream_img' wx:if="{{item.src}}" src='{{item.src}}' mode='aspectFit'></image>
+          <image class='information_stream_img' wx:else src='/image/unknow_doctor_male.png' mode='aspectFit'></image>
+          <view class='doctor_name'>{{item.name}}</view>
+          <view class='introduce'>{{item.intro}}</view>
+          <button>预约</button>
+          <!-- <view class='information_stream_link'></view> -->
+        </view>
+      </block>
+    </view>
+
+
+  </view>
+  <!-- page_body end -->
+
+
+</view>
+<!-- container end -->

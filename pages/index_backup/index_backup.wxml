@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+      <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="../../image/wechatHL.png" mode="cover"></image> -->
+      <text class="userinfo-nickname">您好，{{userName}}</text>  
+  </view>
+  
+  <!-- <template is="head" data="{{title: 'view'}}"/> -->
+
+  <view class="page-body">
+    <!-- <view class="page-section">
+      <view class="page-section-title">
+        <text>flex-direction: row\n横向布局</text>
+      </view>
+      <view class="page-section-spacing">
+        <view class="flex-wrp" style="flex-direction:row;">
+          <view class="flex-item demo-text-2"></view>
+          <view class="flex-item demo-text-2"></view>
+          <view class="flex-item demo-text-3"></view>
+        </view>
+      </view>
+    </view> -->
+    <view class="page-section">
+      <!-- <view class="page-section-title">
+        <text>flex-direction: column\n纵向布局</text>
+      </view> -->
+      <view class="flex-wrp" style="flex-direction:column;align-items: center;">
+        <image class="flex-item flex-item-V" src="../../image/wechatHL.png" mode="cover" bindtap='bindImgTap' id='guahao'></image>
+        <text class="tips">挂号</text> 
+        <image class="flex-item flex-item-V" src="../../image/wechatHL.png" mode="cover" id='bingli' bindtap='bindImgTap'></image>
+        <text class="tips">查看历史病历</text>
+        <image class="flex-item flex-item-V" src="../../image/wechatHL.png" mode="cover" id='jianyan' bindtap='bindImgTap'></image>
+        <text class="tips">查看检验报告</text>
+        <!-- <view class="flex-item flex-item-V demo-text-1"></view>
+        <view class="flex-item flex-item-V demo-text-2"></view>
+        <view class="flex-item flex-item-V demo-text-3"></view> -->
+      </view>
+    </view>
+  </view>
+</view>
