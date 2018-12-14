@@ -15,7 +15,7 @@
       <view class="page-section-spacing">
         <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
           <block wx:for="{{top_scroll_menu}}">
-            <view id='{{demo}}' class='scroll-view-item_H'>{{item}}</view>
+            <view id='{{demo}}' class='scroll-view-item_H' bindtap='{{item.menu_func}}'>{{item.name}}</view>
             <!-- <view id="demo1" class="scroll-view-item_H demo-text-1"></view>
             <view id="demo2" class="scroll-view-item_H demo-text-2"></view>
             <view id="demo3" class="scroll-view-item_H demo-text-3"></view> -->
@@ -41,15 +41,62 @@
 
     <!-- information stream -->
     <view class='information_stream_container'>
-      <block wx:for="{{information_stream_items}}">
-        <view class='information_stream_item'>
-          <image class='information_stream_img' wx:if="{{item.src}}" src='{{item.src}}' mode='aspectFit'></image>
-          <image class='information_stream_img' wx:else src='/image/unknow_doctor_male.png' mode='aspectFit'></image>
-          <view class='doctor_name'>{{item.name}}</view>
-          <view class='introduce'>{{item.intro}}</view>
-          <button>预约</button>
-          <!-- <view class='information_stream_link'></view> -->
-        </view>
+    <!-- 如果医生按钮倍触发，则显示医生信息 -->
+      <block wx:if="{{information_stream_items.Doctor}}">
+        <block wx:for="{{information_stream_items.Doctor}}">
+          <view class='information_stream_item'>
+            <image class='information_stream_img' wx:if="{{item.src}}" src='{{item.src}}' mode='aspectFit'></image>
+            <image class='information_stream_img' wx:elif="{{item.gender==0}}" src='/image/unknow_doctor_female.png' mode='aspectFit'></image>
+            <image class='information_stream_img' wx:else src='/image/unknow_doctor_male.png' mode='aspectFit'></image>
+            <view class='doctor_name'>{{item.name}}</view>
+            <view class='introduce'>{{item.intro}}</view>
+            <button>预约</button>
+            <!-- <view class='information_stream_link'></view> -->
+          </view>
+        </block>
+      </block>
+
+      <!-- 如果健康信息按钮被触发，则显示健康信息 -->
+      <block wx:if="{{information_stream_items.Information}}">
+        <block wx:for="{{information_stream_items.Information}}">
+          <view class='information_stream_item'>
+            <image class='information_stream_img' wx:if="{{item.src}}" src='{{item.src}}' mode='aspectFit'></image>
+            <image class='information_stream_img' wx:elif="{{item.gender==0}}" src='/image/unknow_doctor_female.png' mode='aspectFit'></image>
+            <image class='information_stream_img' wx:else src='/image/unknow_doctor_male.png' mode='aspectFit'></image>
+            <view class='doctor_name'>{{item.name}}</view>
+            <view class='introduce'>{{item.intro}}</view>
+            <button>预约</button>
+            <!-- <view class='information_stream_link'></view> -->
+          </view>
+        </block>
+      </block>
+      <!-- 如果药物信息按钮被触发，则显示药物信息 -->
+      <block wx:if="{{information_stream_items.Medicine}}">
+        <block wx:for="{{information_stream_items.Medicine}}">
+          <view class='information_stream_item'>
+            <image class='information_stream_img' wx:if="{{item.src}}" src='{{item.src}}' mode='aspectFit'></image>
+            <image class='information_stream_img' wx:elif="{{item.gender==0}}" src='/image/unknow_doctor_female.png' mode='aspectFit'></image>
+            <image class='information_stream_img' wx:else src='/image/unknow_doctor_male.png' mode='aspectFit'></image>
+            <view class='doctor_name'>{{item.name}}</view>
+            <view class='introduce'>{{item.intro}}</view>
+            <button>预约</button>
+            <!-- <view class='information_stream_link'></view> -->
+          </view>
+        </block>
+      </block>
+      <!-- 如果检查介绍按钮被触发，则显示检查信息 -->
+      <block wx:if="{{information_stream_items.Examination}}">
+        <block wx:for="{{information_stream_items}}">
+          <view class='information_stream_item'>
+            <image class='information_stream_img' wx:if="{{item.src}}" src='{{item.src}}' mode='aspectFit'></image>
+            <image class='information_stream_img' wx:elif="{{item.gender==0}}" src='/image/unknow_doctor_female.png' mode='aspectFit'></image>
+            <image class='information_stream_img' wx:else src='/image/unknow_doctor_male.png' mode='aspectFit'></image>
+            <view class='doctor_name'>{{item.name}}</view>
+            <view class='introduce'>{{item.intro}}</view>
+            <button>预约</button>
+            <!-- <view class='information_stream_link'></view> -->
+          </view>
+        </block>
       </block>
     </view>
 
