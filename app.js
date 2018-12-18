@@ -1,7 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
-    wx.setStorageSync('loginStatus', 0)
+    wx.setStorageSync('userId', 'null')
     //wx.setStorageSync('loginName', 'anomynous')
   //   // 展示本地存储能力
   //   var logs = wx.getStorageSync('logs') || []
@@ -36,6 +36,6 @@ App({
   //   })
   },
   globalData: {
-    userInfo: {patientinfo: {name: '游客'}}
+    //userInfo: {patientinfo: {name: '游客'}}
   }
 })

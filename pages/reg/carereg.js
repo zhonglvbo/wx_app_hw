@@ -30,9 +30,10 @@ Page({
   },
   bindChange(e) {
     const val = e.detail.value
+    //console.log(this.data.months)
     this.setData({
       year: this.data.years[val[0]],
-      month: this.data.months[val[1]-1],
+      month: this.data.months[val[1]]-1,
       day: this.data.days[val[2]],
       value: val,
       isDaytime: !val[3]
@@ -44,7 +45,7 @@ Page({
       var pages = getCurrentPages()
       var p = pages[pages.length-1]
       
-      var list = res.data.Docclass
+      var list = res.data.Doctclass
       for (let item of list) {
         item['open'] = false
         //item['pages'] = []

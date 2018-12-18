@@ -44,8 +44,6 @@ Page({
 
 const service = require('../../utils/services.js')
 
-//service.AddUser(callBackhandle, 'FadinMemo', '@123456', '许晓斐', 1, 18)
-
 function AuthUser(obj) {
   //console.log(obj.loginName, obj.password)
   if (obj.loginName == '' || obj.password == '') {
@@ -81,13 +79,11 @@ function AuthUserHandle(res) {
       icon: 'none',
       duration: 1000
     })
-    //console.log('goto index page')
-    //wx.setStorageSync('loginStatus', 1)
-    var app = getApp()
-    app.globalData.userInfo = res.loginObj
-    //console.log(wx.getStorageSync('loginObj'))
-    wx.navigateTo({
-      url: '../index/index'
+    wx.setStorageSync('userId', res.loginObj.idprojection)
+    wx.switchTab({
+      url: '../index/index',
     })
   }
 }
+
+

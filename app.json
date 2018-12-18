@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/login/login",        
     "pages/index/index",
     "pages/reg/carereg",
-    "pages/login/login",
     "pages/login/reg",
     "pages/reg/regtodoc",
     "pages/reg/regpay",
