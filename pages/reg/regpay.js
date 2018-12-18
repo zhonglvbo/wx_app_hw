@@ -34,14 +34,14 @@ Page({
         price: res.data.price
       })
       service.GetDocById(function(re) {
-        console.log(re)
+        //console.log(re)
         var pages = getCurrentPages(), p = pages[pages.length - 1]
         p.setData({
           regtodoc: re.data.name
         })
       }, res.data.regtodoc)
       service.GetClassById(function(re){
-        console.log(re)
+        //console.log(re)
         var pages = getCurrentPages(), p = pages[pages.length - 1]
         p.setData({
           regtoclass: re.data.name

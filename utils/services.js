@@ -55,7 +55,7 @@ function InitPatient(VecRes, passing_obj) {
   passing_obj.patientobj['vectorize'] = {'id': VecRes.data.id}
   //console.log(passing_obj.patientobj)
   var obj = {
-    url: baseUrl + 'patient/',
+    url: baseUrl + 'patient2/',
     method: 'POST',
     data: passing_obj.patientobj,
     callBack: InitUser
@@ -104,7 +104,7 @@ const SrchUser = function(callBack, passing_obj) {
 const GetDocClassList = function(callBack) {
   //GetDocClassListStatic(callBack)
   var obj = {
-    'url': baseUrl + 'Doctclass/',
+    'url': baseUrl + 'Department/',
     'method': 'GET',
     'callBack': callBack
   }
@@ -154,7 +154,7 @@ const AuthUser = function(callBack, loginObj) {
 const GetDocById = function(callBack, id) {
   //GetDocByIdStatic(callBack, id)
   var obj = {
-    'url': baseUrl + 'Doct/' + id,
+    'url': baseUrl + 'Doctor2/' + id,
     'method': 'GET',
     'data': {},
     'callBack': callBack 
@@ -182,11 +182,12 @@ const AddReg = function (callBack, docid, classid, date, ampm, patientid) {
         return
       }
       //console.log('creating reg done')
+      console.log(re.data)
       passing_obj['reg'] = re.data //hold reg obj for later use
       //find patient, associate reg with it 
       var obj = {
         //find curr patient obj
-        'url': baseUrl + 'Patient/' + passing_obj.patientId,
+        'url': baseUrl + 'Patient2/' + passing_obj.patientId,
         'method': 'GET',
         'data': {},
         'callBack': function (re, passing_obj) {
@@ -201,7 +202,7 @@ const AddReg = function (callBack, docid, classid, date, ampm, patientid) {
             'id': passing_obj.reg.id
           })
           var obj = {
-            'url': baseUrl + 'Patient/' + passing_obj.patientId,
+            'url': baseUrl + 'Patient2/' + passing_obj.patientId,
             'method': 'PUT',
             'data': re.data,
             'callBack': function(re, passing_obj) {
@@ -213,7 +214,7 @@ const AddReg = function (callBack, docid, classid, date, ampm, patientid) {
               //console.log('updating patient done')
               //fetch doc obj
               var obj = {
-                'url': baseUrl + 'Doct/' + passing_obj.reg.regtodoc,
+                'url': baseUrl + 'Doctor2/' + passing_obj.reg.regtodoc,
                 'method': 'GET',
                 'data': {},
                 'callBack': function(re, passing_obj) {
@@ -225,18 +226,19 @@ const AddReg = function (callBack, docid, classid, date, ampm, patientid) {
                   var q = re.data.queue
                   //var flag = false
                   for (let itm of q) {
-                    if (itm.date == passing_obj.reg.data && itm.ampm == passing_obj.reg.ampm) {
+                    //console.log(itm.date, passing_obj.reg.data, itm.ampm, passing_obj.reg.ampm)
+                    if (itm.date == passing_obj.reg.date && itm.ampm == passing_obj.reg.ampm) {
                       //flag = true
                       console.log('corresponding queue found')
                       itm.reg.push({
                         'id': passing_obj.reg.id
                       })
-                      if (itm.reg.length == 10) {
+                      if (itm.reg.length >= 10) {
                         itm.reg.status = 1
                       }
                       //update doc's queue
                       var obj = {
-                        'url': baseUrl + 'Doct/' + passing_obj.reg.regtodoc,
+                        'url': baseUrl + 'Doctor2/' + passing_obj.reg.regtodoc,
                         'method': 'PUT',
                         'data': re.data,
                         'callBack': function(re, passing_obj) {
@@ -260,7 +262,7 @@ const AddReg = function (callBack, docid, classid, date, ampm, patientid) {
                   passing_obj['doc'] = re.data
                   //create a new queue
                   var obj = {
-                    'url': baseUrl + 'Carequeue/',
+                    'url': baseUrl + 'Queue2/',
                     'method': 'POST',
                     'data': {
                       'date': passing_obj.reg.date,
@@ -284,7 +286,7 @@ const AddReg = function (callBack, docid, classid, date, ampm, patientid) {
                         'id': re.data.id
                       })
                       var obj = {
-                        'url': baseUrl + 'Doct/' + docobj.id,
+                        'url': baseUrl + 'Doctor2/' + docobj.id,
                         'method': 'PUT',
                         'data': docobj,
                         'callBack': function(re, passing_obj) {
@@ -318,6 +320,10 @@ const AddReg = function (callBack, docid, classid, date, ampm, patientid) {
   restfulService(obj, {'callBack':callBack, 'patientId': patientid})
 }
 
+const GetDocListByClassId = function (callBack, classid) {
+
+}
+
 const GetRegById = function (callBack, id) {
   //AddRegStatic(callBack)
   var obj = {
@@ -331,7 +337,7 @@ const GetRegById = function (callBack, id) {
 
 const GetClassById = function(callBack, id) {
   var obj = {
-    'url': baseUrl + 'Doctclass/' + id,
+    'url': baseUrl + 'Department/' + id,
     'method': 'GET',
     'data': {},
     'callBack': callBack
@@ -363,6 +369,44 @@ const PayReg = function(callBack, id) {
   restfulService(obj, {'callBack': callBack})
 }
 
+const GetPatientById = function(callBack, id) {
+  var obj = {
+    'url': baseUrl + 'patient2/' + id,
+    'method': 'GET',
+    'data': {},
+    'callBack': callBack
+  }
+  restfulService(obj)
+}
+
+const EmptyResourceByName = function(callBack, resourceName) {
+  //empy a particular resouce, make sure dependancies have been removed properly
+  //fetch all data objs
+  var obj = {
+    'url': baseUrl + resourceName,
+    'method': 'GET',
+    'data': {},
+    'callBack' : function(res, passing_obj) {
+      if (res.statusCode != 200) {
+        callBack(res)
+        return
+      }
+      for (let itm of res.data[passing_obj.name]) {
+        var obj = {
+          'url': baseUrl + passing_obj.name + '/' + itm.id,
+          'method': 'GET',
+          'data': {},
+          'callBack': function(re) {
+            console.log(re)
+          }
+        }
+        restfulService(obj)
+      }
+    }
+  }
+  restfulService(obj, {'callBack': callBack, 'name': resourceName})
+}
+
 function restfulService (req_obj, passing_obj) {
   //obj: 4 attri at least: url, method, data, callBack
   wx.request({
@@ -383,10 +427,12 @@ module.exports = {
   AuthUser,
   GetDocClassList,
   //GetDocListByClassId,
+  GetPatientById,
   GetDocById,
   GetClassById,
   GetRegById,
   AddReg, 
+  //EmptyResourceByName,
   PayReg
 }
 

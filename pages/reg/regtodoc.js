@@ -85,10 +85,16 @@ Page({
       a3: 2 * Math.random() - 1,
       a4: 2 * Math.random() - 1
     }
-    service.GetDocListByClassId(function(res) {
+    service.GetPatientById(function (res) {
+      console.log(uservector)
+    }, wx.getStorageSync('userId'))
+
+    return
+
+    service.GetClassById(function(res) {
       //console.log(res)
       var pages = getCurrentPages(), p = pages[pages.length - 1]
-      var doclist = res.data, curr_max = -Infinity, recommId
+      var doclist = res.data.doclist, curr_max = -Infinity, recommId
       //console.log(curr_max)
       for (let doc of doclist) {
         let queues = doc.queue, flag = true
