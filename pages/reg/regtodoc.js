@@ -39,10 +39,15 @@ Page({
       var year_curr = new Date().getFullYear()
       var date = new Date(year_curr+parseInt(dateArray[0]), parseInt(dateArray[1]), parseInt(dateArray[2])+1)
       var queue = res.data.queue
+      //console.log(res.data)
       p.setData({regdate: {
         "date": date,
         "ampm": parseInt(dateArray[3])
       }})
+      if (queue.length == 0) {
+        p.setData({ canReg: true })
+        return
+      }
       for (let itm of queue) {
         //console.log(itm)
         if (itm.date == util.formatDate(date) && itm.ampm == parseInt(dateArray[3])) {
@@ -66,8 +71,8 @@ Page({
 
   reg: function(e) {
     //console.log(e)
-    var patientid = getApp().globalData.userInfo.id
-    service.AddReg(AddRegCallBack, this.data.DocId, util.formatDate(this.data.regdate.date), this.data.regdate.ampm, patientid)
+    var patientid = wx.getStorageSync('userId')
+    service.AddReg(AddRegCallBack, this.data.DocId, this.data.ClassId, util.formatDate(this.data.regdate.date), this.data.regdate.ampm, patientid)
 
   },
 
@@ -129,14 +134,12 @@ function InnerProduct(v1, v2) {
   return v1.a0*v2.a0+v1.a1*v2.a1+v1.a2*v2.a2+v1.a3*v2.a3+v1.a4*v2.a4
 }
 
-
-
 //console.log('regtodoc inited')
 function AddRegCallBack(res) {
   //console.log(res)
   if (res.statusCode == 200) {
     wx.redirectTo({
-      url: '/pages/reg/regpay?regid='+res.data.id,
+      url: '/pages/reg/regpay?regid=' + res.data.id,
     })
   } else {
     wx.showToast({

@@ -12,6 +12,7 @@
               <input class="weui-input" name="loginName" placeholder="注册邮箱/手机号/登陆账号名" />
               <input class="weui-input" password name="password" placeholder="密码" />
               <input class="weui-input"password name="passwordconfirm" placeholder='再次输入密码' />
+              <input class="weui-input" name="RealName" placeholder="真实姓名" />
               <input class="weui-input" name='gender' placeholder='性别' />
               <input class="weui-input" name='age' placeholder='年龄' />
             </view>

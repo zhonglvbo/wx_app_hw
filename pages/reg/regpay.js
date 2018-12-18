@@ -25,14 +25,28 @@ Page({
         })
         return
       }
-      var pages = getCurrentPages()
-      var p = pages[pages.length-1]
+      //console.log(res)
+      var pages = getCurrentPages(), p = pages[pages.length-1]
       p.setData({
         regdate: res.data.date + (res.data.ampm == '0'?'上午':'下午'),
-        regtoclass: res.data.regtoclass.name,
-        regtodoc: res.data.regtodoc.name,
+        //regtoclass: res.data.regtoclass.name,
+        //regtodoc: res.data.regtodoc.name,
         price: res.data.price
       })
+      service.GetDocById(function(re) {
+        console.log(re)
+        var pages = getCurrentPages(), p = pages[pages.length - 1]
+        p.setData({
+          regtodoc: re.data.name
+        })
+      }, res.data.regtodoc)
+      service.GetClassById(function(re){
+        console.log(re)
+        var pages = getCurrentPages(), p = pages[pages.length - 1]
+        p.setData({
+          regtoclass: re.data.name
+        })
+      }, res.data.regtoclass)
     }, options.regid)
   },
 
@@ -54,9 +68,9 @@ function payCallBack(res) {
     })
     setTimeout(
       function() {
-        wx.redirectTo({
-        url: '../index/index'
-      })
+        wx.switchTab({
+          url: '../index/index'
+        })      
     }, 2000)
   } else {
     wx.showToast({
