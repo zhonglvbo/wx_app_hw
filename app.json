@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/login/login",        
+    "pages/index/index",
+    "pages/reg/carereg",
+    "pages/login/reg",
+    "pages/reg/regtodoc",
+    "pages/reg/regpay",
+    "pages/index_backup/index_backup",
+    "pages/patient/patient",
+    "pages/report/report",
+    "pages/prescription/prescription"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "移动医疗平台",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "image/information.png",
+        "selectedIconPath": "image/information_color.png"
+      },
+      {
+        "pagePath": "pages/reg/carereg",
+        "text": "挂号",
+        "iconPath": "image/hospital.png",
+        "selectedIconPath": "image/hospital_color.png"
+      },
+      {
+        "pagePath": "pages/patient/patient",
+        "text": "查看病历",
+        "iconPath": "image/file.png",
+        "selectedIconPath": "image/file_color.png"
+      },
+      {
+        "pagePath": "pages/report/report",
+        "text": "检查",
+        "iconPath": "image/doc.png",
+        "selectedIconPath": "image/doc_color.png"
+      },
+      {
+        "pagePath": "pages/prescription/prescription",
+        "text": "药单",
+        "iconPath": "image/doc.png",
+        "selectedIconPath": "image/doc_color.png"
+      }
+    ]
+  }
+}

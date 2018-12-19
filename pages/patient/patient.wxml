@@ -1,0 +1,18 @@
+
+
+<view class="container">
+  <view>
+
+  <view class="page-body">
+  <view  class="head" >{{patient}}的病历</view>
+    <view class="page-section page-section-spacing">
+      <view class="text-box" scroll-y="true" >
+        <text>{{text}}</text>
+      </view>
+      <button  bindtap="next">下一张病历</button>
+      <button  bindtap="before">上一张病历</button>
+    </view>
+  </view>
+
+  </view>
+</view>
